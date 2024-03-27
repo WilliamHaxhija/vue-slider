@@ -27,28 +27,33 @@ createApp({
                 }
             ],
             activeItem: 0,
+            autoScroll: null
         };
     },
     methods: {
         showNextImage: function () {
             if (this.activeItem < this.slides.length -1) {
-                this.activeItem++
+                this.activeItem++;
             } else {
-                this.activeItem = 0
+                this.activeItem = 0;
             }
         },
         showPreviousImage: function () {
             if (this.activeItem > 0) {
-                this.activeItem--
+                this.activeItem--;
             } else {
-                this.activeItem = this.slides.length - 1
+                this.activeItem = this.slides.length - 1;
             }
         },
         showCurrentImage: function (index) {
-            this.activeItem = index
+            this.activeItem = index;
         },
         autoPlay () {
-            setInterval(this.showNextImage, 3000);
+            this.autoScroll = setInterval(this.showNextImage, 3000);
+        },
+        stopAutoPlay() {
+            clearInterval(this.autoScroll);
+            this.autoScroll = null;
         }
     },
     mounted() {
